@@ -202,7 +202,7 @@ DWORD WINAPI requestHandler(void *arg)
         }
 
         if (bytesRead > 0) {
-            // printf("%s", buffer);
+            printf("Read %d bytes, message %s\n", bytesRead, buffer);
         } else if (bytesRead == 0) {
         } else {
             printf("\nrecv failed: %d\n", WSAGetLastError());
@@ -212,6 +212,7 @@ DWORD WINAPI requestHandler(void *arg)
         if (strncmp(request + requestCurLen - 4, "!BYE", 4) == 0) {
             break;
         }
+        ZeroMemory(buffer, sizeof(buffer));
 
     } while (bytesRead > 0);
 
